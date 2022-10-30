@@ -14,9 +14,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from reviews.models import Category, Genre, Review, Title
 from users.models import User
+
 from .filters import TitleFilter
 from .mixins import ModelMixinSet
 from .permissions import (Admin, AdminOrRedOnly, CommentPermission,
@@ -112,7 +112,7 @@ class CommentViewSet(ModelViewSet):
 
 
 @permission_classes([AllowAny])
-class signup(APIView):
+class SignUp(APIView):
 
     def post(self, request):
         serializer = EmailSerializer(data=request.data)
@@ -136,7 +136,7 @@ class signup(APIView):
 
 
 @permission_classes([AllowAny])
-class token(APIView):
+class Token(APIView):
 
     def post(self, request):
         serializer = TokenSerializer(data=request.data)
@@ -144,9 +144,8 @@ class token(APIView):
             username = serializer.validated_data.get('username')
             conf_code = serializer.validated_data.get('confirmation_code')
             user = get_object_or_404(User, username=username)
-            if User.objects.filter(
-                    username=username).exists() and \
-                    check_password(conf_code, user.confirmation_code):
+            if (User.objects.filter(username=username).exists()
+                    and check_password(conf_code, user.confirmation_code)):
                 return Response(get_tokens_for_user(user),
                                 status=status.HTTP_200_OK)
             return Response(status=status.HTTP_400_BAD_REQUEST)
