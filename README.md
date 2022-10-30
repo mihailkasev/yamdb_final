@@ -21,7 +21,7 @@
 
 ### Бейдж
 
-https://github.com/mihailkasev/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg
+https://github.com/mihailkasev/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg
 
 ### Запуск проекта 
 - Клонируйте репозиторий:
