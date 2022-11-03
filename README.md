@@ -47,3 +47,7 @@ docker-compose exec web python manage.py collectstatic --no-input
 ```
 ### Автор:
 - Михаил Касев
+Адреса сайта:
+1) http://51.250.13.179/admin/
+2) http://51.250.13.179/redoc/
+3) http://51.250.13.179/api/v1/
